@@ -22,16 +22,18 @@ def data(request):
 
     result['count'] = len(type)
     # 前台传来的页数
-    page_index = request.GET.get('page')
+    page_index = request.GET.get('page','1')
     # 前台传来的一页显示多少条数据
-    page_limit = request.GET.get('limit')
+    page_limit = request.GET.get('limit','5')
     # 分页器进行分配
     print(page_limit)
-    paginator = Paginator(type, page_limit)
-    # 前端传来页数的数据
+    paginator = Paginator(type, page_limit)#将数据进行根据limit数量进行分割
+    # 前端传来页数的数据 再根据页数将数据传回去
     data = paginator.page(page_index)
+    print("123",data)
     # 放在一个列表里
     student_info = [x for x in data]
     result['data'] = student_info
+    print(student_info)
     # students.count()总数据量，layui的table模块要接受的格式
     return JsonResponse(result, safe=False)
