@@ -1,7 +1,7 @@
 import json
 import logging
 
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
 from wxcloudrun.models import Counters, Users
 from django.core.paginator import Paginator
@@ -14,7 +14,7 @@ def data(request):
     for data in mes:
         dic = {}
         dic['id'] = data.id
-        dic['name'] = data.sname
+        dic['sname'] = data.sname
         dic['sex'] = data.sex
         dic['city'] = data.city
         dic['school'] = data.school
@@ -37,3 +37,42 @@ def data(request):
     print(student_info)
     # students.count()总数据量，layui的table模块要接受的格式
     return JsonResponse(result, safe=False)
+def doadd(request):
+    if request.method == 'POST':
+        response = {'msg': '', 'status': False}
+        sname = request.POST.get('sname', '')
+        city = request.POST.get('city', '')
+        sex = request.POST.get('sex', '')
+        school = request.POST.get('school', '')
+        spwd = request.POST.get('spwd', '')
+        print(sname+"+++++++"+city+''+school)
+        u= Users.objects.create(sname=sname,city=city,sex=sex,school=school,spwd=spwd)
+        u.save()
+        response['msg'] = '添加成功'
+        response['status'] = True
+        return HttpResponse(json.dumps(response))
+#将前端传回的数据进行更新
+def doedit(request):
+    # result = {"msg": 'success', "code": '0', "data": [], "count": 0}
+    if request.method == 'POST':
+        response = {'msg': '', 'status': False}
+        sname = request.POST.get('sname', '')
+        city = request.POST.get('city', '')
+        id = request.POST.get('id', '')
+        sex = request.POST.get('sex', '')
+        school = request.POST.get('school', '')
+        print("需要修改的"+sname+"+++++++"+city+''+id)
+        u= Users.objects.filter(id=id)
+        u.update(sname=sname,city=city,sex=sex,school=school)
+        response['msg'] = '更新成功'
+        response['status'] = True
+        return HttpResponse(json.dumps(response))
+def delete(request):
+    if request.method == 'POST':
+        response = {'msg': '', 'status': False}
+        id = request.POST.get('id', '')
+        print("要删除的id"+id)
+        Users.objects.filter(id=id).delete()
+        response['msg'] = '删除成功'
+        response['status'] = True
+        return HttpResponse(json.dumps(response))

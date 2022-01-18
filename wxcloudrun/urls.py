@@ -20,7 +20,10 @@ from django.urls import path
 
 urlpatterns = [
     # 计数器接口
-    path('data/', views.data)
+    path('data/', views.data),
+    path('doadd/', views.doadd),
+    path('doedit/', views.doedit),
+    path('delete/', views.delete)
 ]
 
 
