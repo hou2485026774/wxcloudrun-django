@@ -184,7 +184,10 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
+#默认文件上传目录
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')#默认为项目包下面的 media
+#默认文件读取目录
+MEDIA_URL = '/media/'#目录的名字
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
