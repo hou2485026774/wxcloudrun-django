@@ -22,6 +22,7 @@ class Users(models.Model):
     city = models.CharField(max_length=255)
     sex = models.CharField(max_length=255)
     school = models.CharField(max_length=255)
+    #flag = models.CharField(max_length=255)
     #设置生成的表的信息
     class Meta:
         db_table = 'users'

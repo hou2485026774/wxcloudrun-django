@@ -6,6 +6,18 @@ from django.shortcuts import render
 from wxcloudrun.models import Counters, Users
 from django.core.paginator import Paginator
 logger = logging.getLogger('log')
+#登录
+def login(request):
+    result = {"msg": '', "code": '0'}
+    sname = request.POST.get('sname')
+    spwd = request.POST.get('spwd')
+    print(sname,'',spwd)
+    u = Users.objects.get(sname=sname)
+    if u.spwd ==spwd:
+        result['msg'] = '登录成功'
+    else:
+        result['msg'] = 'flase'
+    return JsonResponse(result)
 #获取数据
 def data(request):
     mes = Users.objects.all()

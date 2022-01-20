@@ -23,7 +23,8 @@ urlpatterns = [
     path('data/', views.data),
     path('doadd/', views.doadd),
     path('doedit/', views.doedit),
-    path('delete/', views.delete)
+    path('delete/', views.delete),
+    path('login/', views.login)
 ]
 
 
