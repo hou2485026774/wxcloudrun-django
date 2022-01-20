@@ -25,8 +25,8 @@ urlpatterns = [
     path('doedit/', views.doedit),
     path('delete/', views.delete),
     path('login/', views.login),
-    path('uploadImg/', views.uploadImg),
-    path('getImg/', views.getImg)
+    path('uploadImg/', views.uploadImg)
+    # path('getImg/', views.getImg)
 ]
 
 

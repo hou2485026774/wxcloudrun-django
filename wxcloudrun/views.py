@@ -97,17 +97,17 @@ def uploadImg(request):
         response['msg'] = '666'
     return JsonResponse(response,safe=False)
 #得到图片数据
-def getImg(request):
-    if request.method == 'POST':
-        result = {"msg": '666', "code": '0','data':[]}
-        mes = Img.objects.all()
-        print(mes)
-        line = []
-        for data in mes:
-            dic = {}
-            dic['id'] = data.id
-            dic['img'] = str(data.img)
-            line.append(dic)
-            print(line)
-        result['data'] = line
-        return JsonResponse(result, safe=False)
+# def getImg(request):
+#     if request.method == 'POST':
+#         result = {"msg": '666', "code": '0','data':[]}
+#         mes = Img.objects.all()
+#         print(mes)
+#         line = []
+#         for data in mes:
+#             dic = {}
+#             dic['id'] = data.id
+#             dic['img'] = str(data.img)
+#             line.append(dic)
+#             print(line)
+#         result['data'] = line
+#         return JsonResponse(result, safe=False)
