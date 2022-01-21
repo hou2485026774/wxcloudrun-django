@@ -12,6 +12,6 @@ class Users(models.Model):
     #设置生成的表的信息
     class Meta:
         db_table = 'users'
-# class Img(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     img = models.ImageField(upload_to='img',null=False)
+class Img(models.Model):
+    id = models.AutoField(primary_key=True)
+    img = models.ImageField(upload_to='img',null=False)

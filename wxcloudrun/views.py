@@ -2,7 +2,7 @@ import json
 import logging
 
 from django.http import JsonResponse, HttpResponse
-from wxcloudrun.models import Users
+from wxcloudrun.models import Users, Img
 from django.core.paginator import Paginator
 logger = logging.getLogger('log')
 #登录
@@ -87,27 +87,27 @@ def delete(request):
         response['msg'] = '删除成功'
         response['status'] = True
         return HttpResponse(json.dumps(response))
-# def uploadImg(request):
-#     response = {'msg': '', 'status': False}
-#     if request.method == 'POST':
-#         img = request.FILES.get('img')
-#         print("要上传的图片",img)
-#         i= Img.objects.create(img=img)
-#         i.save()
-#         response['msg'] = '666'
-#     return JsonResponse(response,safe=False)
+def uploadImg(request):
+    response = {'msg': '', 'status': False}
+    if request.method == 'POST':
+        img = request.FILES.get('img')
+        print("要上传的图片",img)
+        i= Img.objects.create(img=img)
+        i.save()
+        response['msg'] = '666'
+    return JsonResponse(response,safe=False)
 #得到图片数据
-# def getImg(request):
-#     if request.method == 'POST':
-#         result = {"msg": '666', "code": '0','data':[]}
-#         mes = Img.objects.all()
-#         print(mes)
-#         line = []
-#         for data in mes:
-#             dic = {}
-#             dic['id'] = data.id
-#             dic['img'] = str(data.img)
-#             line.append(dic)
-#             print(line)
-#         result['data'] = line
-#         return JsonResponse(result, safe=False)
+def getImg(request):
+    if request.method == 'POST':
+        result = {"msg": '666', "code": '0','data':[]}
+        mes = Img.objects.all()
+        print(mes)
+        line = []
+        for data in mes:
+            dic = {}
+            dic['id'] = data.id
+            dic['img'] = str(data.img)
+            line.append(dic)
+            print(line)
+        result['data'] = line
+        return JsonResponse(result, safe=False)
